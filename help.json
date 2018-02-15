@@ -1,0 +1,9 @@
+{
+    "newasset": "To create a new asset, call the **newasset** command, then input the short name, long name, link to photo, category, and cost separated by semicolons. The image must be a Discord CDN link. *Ex:* ```!newasset buzzard;Buzzard Attack Helicopter;https://cdn.discordapp.com/attachments/412839875570827284/412847975518175232/20180213003553_1.jpg;helicopter;100000```",
+    "asset": "To view information about a specific asset, call the **asset** command, then input the short name of the desired asset. *Ex:* ```!asset buzzard```",
+    "editasset": "To edit an existing asset, call the **editasset** command, then input the short name of the desired asset, the attribute to be altered, and the change to execute. *Ex:* ```!editasset jeep;longname;Jeep Wrangler```",
+    "balance": "To edit or view the company balance, call the **balance** command, then input a '+' or '-' followed by the amount you would like to alter the balance by. Alternatively, inputing only the root command will return the current balance. *Ex:* ```!balance + 1000\n!balance```",
+    "listassets": "To view the cumulative list of assets, call the **listassets** command. *Ex:* ```!listassets```",
+    "generatetable": "To generate the balance model, use the **generatetable** command. *Ex:* ```!generatetable```",
+    "reload": "To reload a command, use the **reload** command, followed by the command to be reloaded. *Ex:* ```!reload balance```"
+}
