@@ -1,13 +1,18 @@
 {
-  "name": "CLSBot",
+  "name": "clsbot",
   "version": "1.0.0",
-  "description": "",
+  "description": "Custom built bot for the Condor Logistics and Security military simulation server.",
   "main": "index.js",
+  "engines": {
+    "node": "8.9.4",
+    "npm": "5.6.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Skullker",
   "license": "ISC",
   "dependencies": {
     "async": "^2.6.0",
@@ -18,5 +23,14 @@
     "sqlite": "^2.9.1",
     "sqlite3": "^3.1.13",
     "underscore": "^1.8.3"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Skullker21/CLS-Bot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Skullker21/CLS-Bot/issues"
+  },
+  "homepage": "https://github.com/Skullker21/CLS-Bot#readme"
 }
