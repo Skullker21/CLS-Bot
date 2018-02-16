@@ -5,7 +5,7 @@ exports.run = async (client, message, args) => {
 
     var assetName = args[0];
 
-    const {Balances, Assets} = require('../dbObjects.js');
+    const {Balances, Assets, OwnedAssets} = require('../dbObjects.js');
 
     const asset = await Assets.findOne({ where: { shortName: assetName } });
 

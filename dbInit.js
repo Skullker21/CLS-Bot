@@ -9,6 +9,7 @@ const sequelize = new Sequelize('database', 'username', 'password', {
 
 sequelize.import('models/Balances');
 sequelize.import('models/Assets');
+sequelize.import('models/OwnedAssets');
 
 const force = process.argv.includes('--force') || process.argv.includes('-f');
 

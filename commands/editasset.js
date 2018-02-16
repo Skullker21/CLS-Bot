@@ -1,7 +1,7 @@
 exports.run = async (client, message, args) => {
     const config = require("../config.json");
     var permCheck = require("../checkPermissions.js");
-    const {Balances, Assets} = require('../dbObjects.js');
+    const {Balances, Assets, OwnedAssets} = require('../dbObjects.js');
 
         //Re-split args based on splitter operator
         var newArgs = args.join(" ")

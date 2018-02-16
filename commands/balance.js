@@ -8,7 +8,7 @@ exports.run = async (client, message, args) => {
 
     var permCheck = require("../checkPermissions.js");
 
-    const {Balances, Assets} = require('../dbObjects.js');
+    const {Balances, Assets, OwnedAssets} = require('../dbObjects.js');
 
     if(operator === "+"){
 

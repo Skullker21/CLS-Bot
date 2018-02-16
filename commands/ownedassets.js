@@ -9,12 +9,12 @@ exports.run = async (client, message, args) => {
     var entries = [];
     var sortedEntries = [];
     var categorizedNames = [];
-    var categorizedPrices = [];
+    var categorizedNumOwned = [];
     var lastCat = null;
 
     //Find information in model with findAll and a specific column
-    entriesRaw = await Assets.findAll({
-        attributes: ['shortName', 'longName', 'category', 'cost']
+    entriesRaw = await OwnedAssets.findAll({
+        attributes: ['shortName', 'longName', 'category', 'owned']
     });
 
     //Process long arrays into simplified data with only desired data
@@ -24,14 +24,6 @@ exports.run = async (client, message, args) => {
 
     //sort entries by category alphabetically
     sortedEntries = _.sortBy(entries,'category');
-
-    //append money sign to costs
-    for (let i = 0; i < sortedEntries.length; i++) {
-        const element = sortedEntries[i];
-        element.cost = element.cost.toString();
-        element.cost = ('$' + element.cost);
-        sortedEntries[i].cost = element.cost;
-    }
 
     console.log(sortedEntries);
 
@@ -43,7 +35,7 @@ exports.run = async (client, message, args) => {
             combined = element.longName + " / " + element.shortName;
 
             categorizedNames.push(combined);
-            categorizedPrices.push(element.cost);
+            categorizedNumOwned.push(element.owned);
             lastCat = element.category;
         }else if (element.category !== lastCat){
             var combined;
@@ -51,17 +43,17 @@ exports.run = async (client, message, args) => {
 
             categorizedNames.push(`\n${capitalize(element.category)}s\n--------------`);
             categorizedNames.push(combined);
-            categorizedPrices.push(`\n${capitalize(element.category)}s\n--------------`);
-            categorizedPrices.push(element.cost);
+            categorizedNumOwned.push(`\n${capitalize(element.category)}s\n--------------`);
+            categorizedNumOwned.push(element.owned);
             lastCat = element.category;
         }
     }
 
     const embed = { 
-        "description": "Assets Available For Purchase:",
-        "color": 1340420,
+        "description": "Currently Owned Assets:",
+        "color": 9704468,
         "author": {
-          "name": "CLS Market",
+          "name": "CLS Asset Management",
           "icon_url": "https://cdn.discordapp.com/attachments/393288361122594818/413171704383406091/CLS_No_Text.png"
         },
         "fields": [
@@ -71,8 +63,8 @@ exports.run = async (client, message, args) => {
             "inline": true
           },
           {
-            "name": "Price",
-            "value": "```" + categorizedPrices.join("\n") + "```",
+            "name": "Owned",
+            "value": "```" + categorizedNumOwned.join("\n") + "```",
             "inline": true
           }
         ]
