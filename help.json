@@ -3,7 +3,10 @@
     "asset": "To view information about a specific asset, call the **asset** command, then input the short name of the desired asset. *Ex:* ```!asset buzzard```",
     "editasset": "To edit an existing asset, call the **editasset** command, then input the short name of the desired asset, the attribute to be altered, and the change to execute. *Ex:* ```!editasset jeep;longname;Jeep Wrangler```",
     "balance": "To edit or view the company balance, call the **balance** command, then input a '+' or '-' followed by the amount you would like to alter the balance by. Alternatively, inputing only the root command will return the current balance. *Ex:* ```!balance + 1000\n!balance```",
-    "listassets": "To view the cumulative list of assets, call the **listassets** command. *Ex:* ```!listassets```",
+    "listassets": "To view the cumulative list of assets available for purchase, call the **listassets** command. *Ex:* ```!listassets```",
     "generatetable": "To generate the balance model, use the **generatetable** command. *Ex:* ```!generatetable```",
-    "reload": "To reload a command, use the **reload** command, followed by the command to be reloaded. *Ex:* ```!reload balance```"
+    "reload": "To reload a command, use the **reload** command, followed by the command to be reloaded. *Ex:* ```!reload balance```",
+    "buyasset": "To buy an asset, call the **buyasset** command, then input the short name of the asset you would like to buy followed by the number of that asset you would like to purchase. *Ex:* ```!buyasset towerwooden 3```",
+    "destroyasset": "To destroy an asset, call the **destroyasset** command, then input the short name of the asset you would like to destroy followed by the number of that asset you would like to destroy. *Ex:* ```!destroyasset towerwooden 3```",
+    "ownedassets": "To view the cumulative list of owned assets, call the **ownedassets** command. *Ex:* ```!ownedassets```"
 }
