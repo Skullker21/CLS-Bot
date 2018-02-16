@@ -54,4 +54,7 @@ exports.run = async (client, message, args) => {
         }
     
     }
+    else{
+        return message.reply(`**${toBuy}** does not exist on the market.`)
+    }
 }

@@ -25,9 +25,6 @@ exports.run = async (client, message, args) => {
     //sort entries by category alphabetically
     sortedEntries = _.sortBy(entries,'category');
 
-    console.log(sortedEntries);
-
-
     for (let i = 0; i < sortedEntries.length; i++) {
         const element = sortedEntries[i];
         if(element.category === lastCat){
@@ -49,26 +46,37 @@ exports.run = async (client, message, args) => {
         }
     }
 
-    const embed = { 
-        "description": "Currently Owned Assets:",
-        "color": 9704468,
-        "author": {
-          "name": "CLS Asset Management",
-          "icon_url": "https://cdn.discordapp.com/attachments/393288361122594818/413171704383406091/CLS_No_Text.png"
-        },
-        "fields": [
-          {
-            "name": "Long Name / Short Name",
-            "value": "```" + categorizedNames.join("\n") + "```",
-            "inline": true
-          },
-          {
-            "name": "Owned",
-            "value": "```" + categorizedNumOwned.join("\n") + "```",
-            "inline": true
-          }
-        ]
-      };
-    message.channel.send({ embed });
-
+    if(categorizedNames.length > 0){
+        const embed = { 
+            "description": "Currently Owned Assets:",
+            "color": 9704468,
+            "author": {
+            "name": "CLS Asset Management",
+            "icon_url": "https://cdn.discordapp.com/attachments/393288361122594818/413171704383406091/CLS_No_Text.png"
+            },
+            "fields": [
+            {
+                "name": "Long Name / Short Name",
+                "value": "```" + categorizedNames.join("\n") + "```",
+                "inline": true
+            },
+            {
+                "name": "Owned",
+                "value": "```" + categorizedNumOwned.join("\n") + "```",
+                "inline": true
+            }
+            ]
+        };
+        message.channel.send({ embed });
+    }else{
+            const embed = { 
+                "description": "No Assets Currently Owned.",
+                "color": 9704468,
+                "author": {
+                "name": "CLS Asset Management",
+                "icon_url": "https://cdn.discordapp.com/attachments/393288361122594818/413171704383406091/CLS_No_Text.png"
+                }
+            };
+            message.channel.send({ embed });
+    }
 }
