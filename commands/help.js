@@ -26,6 +26,15 @@ exports.run = (client, message, args) => {
         case "reload":
             return message.reply(help.reload);
             break;
+        case "buyasset":
+            return message.reply(help.buyasset);
+            break;
+        case "destroyasset":
+            return message.reply(help.destroyasset);
+            break;
+        case "ownedassets":
+            return message.reply(help.ownedassets);
+            break;
         default:
             var commands = [];
             fs.readdir(dir, (err, files) => {
