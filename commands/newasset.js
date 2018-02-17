@@ -18,7 +18,7 @@ exports.run = async (client, message, args) => {
 
     //Store new info in array
     var info = {
-        short: newArgs[0].trim(),
+        short: newArgs[0].trim().replace(/\s+/g, ''),
 
         long: newArgs[1].trim(),
     
@@ -28,8 +28,6 @@ exports.run = async (client, message, args) => {
 
         price: parseInt(newArgs[4])
     }
-
-    console.log(info);
 
     //Create database entry with previously synthesized data
     try {
