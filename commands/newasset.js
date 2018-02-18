@@ -38,7 +38,7 @@ exports.run = async (client, message, args) => {
             category: info.section,
             cost: info.price,
         })
-        return message.reply(`Asset **${asset.get('longName')}** added to database.`);
+        return message.channel.send(`Asset **${asset.get('longName')}** added to database.`);
     }
     catch (e) {
         if (e.name === 'SequelizeUniqueConstraintError') {

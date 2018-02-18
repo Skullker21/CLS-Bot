@@ -29,9 +29,9 @@ exports.run = async (client, message, args) => {
             balance.money -= (numBought * asset.cost)
             balance.save();
             if(numBought === 1){
-                return message.reply(`**${numBought}** of asset **${alreadyOwned.longName}** has been purchased for a total of **$${commaNumber(numBought*asset.cost)}**`)
+                return message.channel.send(`**${numBought}** of asset **${alreadyOwned.longName}** has been purchased for a total of **$${commaNumber(numBought*asset.cost)}**`)
             }else{
-                return message.reply(`**${numBought}** of asset **${alreadyOwned.longName}** have been purchased for a total of **$${commaNumber(numBought*asset.cost)}**`)
+                return message.channel.send(`**${numBought}** of asset **${alreadyOwned.longName}** have been purchased for a total of **$${commaNumber(numBought*asset.cost)}**`)
             }    
         }else{
             try {
@@ -43,9 +43,9 @@ exports.run = async (client, message, args) => {
                     owned: numBought,
                 })
                 if(numBought === 1){
-                    return message.reply(`**${numBought}** of asset **${asset.longName}** has been purchased for a total of **$${commaNumber(numBought*asset.cost)}**`)
+                    return message.channel.send(`**${numBought}** of asset **${asset.longName}** has been purchased for a total of **$${commaNumber(numBought*asset.cost)}**`)
                 }else{
-                    return message.reply(`**${numBought}** of asset **${asset.longName}** have been purchased for a total of **$${commaNumber(numBought*asset.cost)}**`)
+                    return message.channel.send(`**${numBought}** of asset **${asset.longName}** have been purchased for a total of **$${commaNumber(numBought*asset.cost)}**`)
                 }  
             }
             catch (e) {

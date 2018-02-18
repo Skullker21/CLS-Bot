@@ -15,6 +15,6 @@ exports.run = async (client, message, args) => {
     if(asset){
         var name = asset.longName;
         asset.destroy({ force: true })
-        return message.reply(`Asset **${name}** has been removed from the database.`)
+        return message.channel.send(`Asset **${name}** has been removed from the database.`)
     }
 }
