@@ -23,9 +23,9 @@ exports.run = async (client, message, args) => {
             asset.destroy({ force: true })
             console.log("destroyed")
             if(numToRemove === 1){
-                return message.reply(`**${numToRemove}** of asset **${name}** has been destroyed.`)
+                return message.channel.send(`**${numToRemove}** of asset **${name}** has been destroyed.`)
             }else{
-                return message.reply(`**${numToRemove}** of asset **${name}** have been destroyed.`)
+                return message.channel.send(`**${numToRemove}** of asset **${name}** have been destroyed.`)
             }
         }
         else{
@@ -35,9 +35,9 @@ exports.run = async (client, message, args) => {
             asset.save();
             console.log("lowered")
             if(numToRemove === 1){
-                return message.reply(`**${numToRemove}** of asset **${name}** has been destroyed.`)
+                return message.channel.send(`**${numToRemove}** of asset **${name}** has been destroyed.`)
             }else{
-                return message.reply(`**${numToRemove}** of asset **${name}** have been destroyed.`)
+                return message.channel.send(`**${numToRemove}** of asset **${name}** have been destroyed.`)
             }
         }
     }

@@ -18,7 +18,7 @@ exports.run = async (client, message, args) => {
             accountHolder: account,
             money: 0
         })
-        return message.reply(`Account **${balance.get('accountHolder')}** added.`);
+        return message.channel.send(`Account **${balance.get('accountHolder')}** added.`);
     }
     catch (e) {
         if (e.name === 'SequelizeUniqueConstraintError') {

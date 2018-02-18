@@ -6,34 +6,34 @@ exports.run = (client, message, args) => {
     
     switch (args[0]) {
         case "newasset":
-            return message.reply(help.newasset);
+            return message.channel.send(help.newasset);
             break;
         case "asset":
-            return message.reply(help.asset);
+            return message.channel.send(help.asset);
             break;
         case "editasset":
-            return message.reply(help.editasset);
+            return message.channel.send(help.editasset);
             break;
         case "balance":
-            return message.reply(help.balance);
+            return message.channel.send(help.balance);
             break;
         case "listassets":
-            return message.reply(help.listassets);
+            return message.channel.send(help.listassets);
             break;
         case "generatetable":
-            return message.reply(help.generatetable);
+            return message.channel.send(help.generatetable);
             break;
         case "reload":
-            return message.reply(help.reload);
+            return message.channel.send(help.reload);
             break;
         case "buyasset":
-            return message.reply(help.buyasset);
+            return message.channel.send(help.buyasset);
             break;
         case "destroyasset":
-            return message.reply(help.destroyasset);
+            return message.channel.send(help.destroyasset);
             break;
         case "ownedassets":
-            return message.reply(help.ownedassets);
+            return message.channel.send(help.ownedassets);
             break;
         default:
             var commands = [];
@@ -41,7 +41,7 @@ exports.run = (client, message, args) => {
                 files.forEach(file => {
                     commands.push(file.slice(0,file.length-3));
                 });
-                return message.reply("Currently available commands are: ```" + commands.join(", ") + "```")
+                return message.channel.send("Currently available commands are: ```" + commands.join(", ") + "```")
             })
             break;
     }
