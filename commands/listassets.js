@@ -8,54 +8,93 @@ exports.run = async (client, message, args) => {
 
     var entriesRaw = [];
     var entries = [];
-    var sortedEntries = [];
-    var categorizedNames = [];
-    var categorizedPrices = [];
+    var alphabetizedEntries = [];
+    var categorziedEntries = [[]];
+    var sortedEntires = [];
+    var sortedNames = [];
+    var sortedPrices = [];
     var lastCat = null;
+    var currentCat = 0;
 
     //Find information in model with findAll and a specific column
     entriesRaw = await Assets.findAll({
         attributes: ['shortName', 'longName', 'category', 'cost']
     });
+    try{
+        //Process long arrays into simplified data with only desired data
+        entriesRaw.forEach(element => {
+            entries.push(element.dataValues)
+        });
 
-    //Process long arrays into simplified data with only desired data
-    entriesRaw.forEach(element => {
-        entries.push(element.dataValues)
-    });
+        //sort entries by category alphabetically
+        alphabetizedEntries = _.sortBy(entries,'category');
+        
+        lastCat = alphabetizedEntries[0].category;
+        for (let i = 0; i < alphabetizedEntries.length; i++) {
+            const element = alphabetizedEntries[i];
+            if(element.category === lastCat){
+                categorziedEntries[currentCat].push(element);
 
-    //sort entries by category alphabetically
-    sortedEntries = _.sortBy(entries,'category');
+                lastCat = element.category;
 
-    //append money sign to costs
-    for (let i = 0; i < sortedEntries.length; i++) {
-        const element = sortedEntries[i];
-        element.cost = commaNumber(element.cost);
-        element.cost = ('$' + element.cost);
-        sortedEntries[i].cost = element.cost;
-    }
+            }else if(element.category !== lastCat){
 
-    for (let i = 0; i < sortedEntries.length; i++) {
-        const element = sortedEntries[i];
-        if(element.category === lastCat){
-            var combined;
-            combined = element.longName + " / " + element.shortName;
+                categorziedEntries.push([]);
+                currentCat += 1;
 
-            categorizedNames.push(combined);
-            categorizedPrices.push(element.cost);
-            lastCat = element.category;
-        }else if (element.category !== lastCat){
-            var combined;
-            combined = element.longName + " / " + element.shortName;
+                categorziedEntries[currentCat].push(element)
 
-            categorizedNames.push(`\n${capitalize(element.category)}\n--------------`);
-            categorizedNames.push(combined);
-            categorizedPrices.push(`\n${capitalize(element.category)}\n--------------`);
-            categorizedPrices.push(element.cost);
-            lastCat = element.category;
+                lastCat = element.category;
+            }
+        }
+
+        for (let i = 0; i < categorziedEntries.length; i++) {
+
+            const e = categorziedEntries[i];
+            var sorted = _.sortBy(e,'cost');
+            sortedEntires.push(sorted);
+        }
+        
+
+        // append money sign to costs
+        for (let i = 0; i < sortedEntires.length; i++) {
+            for (let j = 0; j < sortedEntires[i].length; j++) {
+
+                const e = sortedEntires[i][j];
+                e.cost = commaNumber(e.cost);
+                e.cost = ('$' + e.cost);
+                sortedEntires[i].cost = e.cost;
+            }
+        }
+        lastCat = null;
+        for (let i = 0; i < sortedEntires.length; i++) {
+            for (let j = 0; j < sortedEntires[i].length; j++) {
+                const e = sortedEntires[i][j];
+                if(e.category === lastCat){
+                    var combined = e.longName + " / " + e.shortName;
+
+                    sortedNames.push(combined);
+                    sortedPrices.push(e.cost);
+                    lastCat = e.category;
+                }
+                else if (e.category !== lastCat){
+                    var combined = e.longName + " / " + e.shortName;
+
+                    sortedNames.push(`\n${capitalize(e.category)}\n--------------`);
+                    sortedNames.push(combined);
+                    sortedPrices.push(`\n${capitalize(e.category)}\n--------------`);
+                    sortedPrices.push(e.cost);
+                    lastCat = e.category;
+                }
+            }
+            
         }
     }
+    catch(e){
+        console.log(e);
+    }
 
-    if(categorizedNames.length > 0){
+    if(sortedNames.length > 0){
         const embed = { 
             "description": "Assets Available For Purchase:",
             "color": 1340420,
@@ -66,12 +105,12 @@ exports.run = async (client, message, args) => {
             "fields": [
             {
                 "name": "Long Name / Short Name",
-                "value": "```" + categorizedNames.join("\n") + "```",
+                "value": "```" + sortedNames.join("\n") + "```",
                 "inline": true
             },
             {
                 "name": "Price",
-                "value": "```" + categorizedPrices.join("\n") + "```",
+                "value": "```" + sortedPrices.join("\n") + "```",
                 "inline": true
             }
             ]
