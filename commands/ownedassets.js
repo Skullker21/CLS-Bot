@@ -38,9 +38,9 @@ exports.run = async (client, message, args) => {
             var combined;
             combined = element.longName + " / " + element.shortName;
 
-            categorizedNames.push(`\n${capitalize(element.category)}s\n--------------`);
+            categorizedNames.push(`\n${capitalize(element.category)}\n--------------`);
             categorizedNames.push(combined);
-            categorizedNumOwned.push(`\n${capitalize(element.category)}s\n--------------`);
+            categorizedNumOwned.push(`\n${capitalize(element.category)}\n--------------`);
             categorizedNumOwned.push(element.owned);
             lastCat = element.category;
         }
