@@ -2,6 +2,7 @@ exports.run = async (client, message, args) => {
     const config = require("../config.json");
     const capitalize = require("capitalize");
     const _ = require("underscore");
+    var commaNumber = require('comma-number');
 
     const {Balances, Assets, OwnedAssets} = require('../dbObjects.js');
 
@@ -28,7 +29,7 @@ exports.run = async (client, message, args) => {
     //append money sign to costs
     for (let i = 0; i < sortedEntries.length; i++) {
         const element = sortedEntries[i];
-        element.cost = element.cost.toString();
+        element.cost = commaNumber(element.cost);
         element.cost = ('$' + element.cost);
         sortedEntries[i].cost = element.cost;
     }

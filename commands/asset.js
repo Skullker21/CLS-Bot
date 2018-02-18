@@ -1,6 +1,6 @@
 exports.run = async (client, message, args) => {
     const config = require("../config.json");
-
+    var commaNumber = require('comma-number');
     const capitalize = require("capitalize");
 
     var assetName = args[0];
@@ -23,7 +23,7 @@ exports.run = async (client, message, args) => {
             "fields": [
               {
                 "name": "Price :moneybag:",
-                "value": `$ ${asset.cost}`
+                "value": `$ ${commaNumber(asset.cost)}`
               },
               {
                 "name": "Category",

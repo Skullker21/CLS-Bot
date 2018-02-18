@@ -1,6 +1,7 @@
 exports.run = async (client, message, args) => {
     const config = require("../config.json");
     var permCheck = require("../checkPermissions.js");
+    var commaNumber = require('comma-number');
     const {Balances, Assets, OwnedAssets} = require('../dbObjects.js');
 
         //Re-split args based on splitter operator
@@ -71,7 +72,7 @@ exports.run = async (client, message, args) => {
                 var oldCost = asset.cost;
                 asset.cost = info.change;
                 asset.save();
-                return message.channel.send(`Asset **${asset.longName}** price updated from **$${oldCost}** to **$${asset.cost}**.`);
+                return message.channel.send(`Asset **${asset.longName}** price updated from **$${oldCost}** to **$${commaNumber(asset.cost)}**.`);
             }
             return message.reply(`Could not find asset with the short name of **${info.short}**`);
             break;

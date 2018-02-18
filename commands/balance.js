@@ -5,7 +5,7 @@ exports.run = async (client, message, args) => {
     //argument for adding/subtracting
     var operator = args[0];
     var change = parseInt(args[1]);
-
+    var commaNumber = require('comma-number');
     var permCheck = require("../checkPermissions.js");
 
     const {Balances, Assets, OwnedAssets} = require('../dbObjects.js');
@@ -24,7 +24,7 @@ exports.run = async (client, message, args) => {
 
             balance.money += change
             balance.save();
-            return message.channel.send(`Account **${balance.accountHolder}** has been updated to **$${balance.money}**`);
+            return message.channel.send(`Account **${balance.accountHolder}** has been updated to **$${commaNumber(balance.money)}**`);
 
         }
         return message.reply(`Could not find account: **${account}**`);
@@ -43,7 +43,7 @@ exports.run = async (client, message, args) => {
 
             balance.money -= change
             balance.save();
-            return message.channel.send(`Account **${balance.accountHolder}** has been updated to **$${balance.money}**`);
+            return message.channel.send(`Account **${balance.accountHolder}** has been updated to **$${commaNumber(balance.money)}**`);
 
         }
         return message.reply(`Could not find account: **${account}**`);
@@ -52,7 +52,7 @@ exports.run = async (client, message, args) => {
 
         const balance = await Balances.findOne({ where: { accountHolder: account } });
         if(balance){
-            return message.channel.send(`Account **${balance.accountHolder}** has a balance of **$${balance.money}**`);
+            return message.channel.send(`Account **${balance.accountHolder}** has a balance of **$${commaNumber(balance.money)}**`);
         }
         return message.reply('Account not created, use **!generatetable**');
 
