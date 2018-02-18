@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const config = require("./config.json");
 const fs = require("fs");
-var db = require('./models');
+var db = require('./models/Index.js');
 
 prefix = config.prefix;
 
