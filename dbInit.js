@@ -1,5 +1,3 @@
-exports.run = () => {
-
 const Sequelize = require('sequelize');
 
 
@@ -22,4 +20,3 @@ sequelize.sync({ force }).then(async () => {
     sequelize.close();
 
 }).catch(console.error);
-}
