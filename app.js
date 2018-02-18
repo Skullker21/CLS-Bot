@@ -5,6 +5,9 @@ const fs = require("fs")
 
 prefix = config.prefix;
 
+var dbInit = require('./dbInit.js')
+dbInit.run();
+
 //handle events
 fs.readdir("./events/", (err, files) => {
 

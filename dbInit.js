@@ -1,4 +1,7 @@
+exports.run = () => {
+
 const Sequelize = require('sequelize');
+
 
 const sequelize = new Sequelize('database', 'username', 'password', {
     host: 'localhost',
@@ -19,3 +22,4 @@ sequelize.sync({ force }).then(async () => {
     sequelize.close();
 
 }).catch(console.error);
+}
