@@ -3,7 +3,7 @@ exports.run = async (client, message, args) => {
     const capitalize = require("capitalize");
     const _ = require("underscore");
 
-    const {Balances, Assets, OwnedAssets} = require('../dbObjects.js');
+    const {Balances, Assets, OwnedAssets} = require('../models/Index.js');
 
     var entriesRaw = [];
     var entries = [];

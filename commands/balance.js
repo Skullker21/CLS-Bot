@@ -8,7 +8,7 @@ exports.run = async (client, message, args) => {
     var commaNumber = require('comma-number');
     var permCheck = require("../checkPermissions.js");
 
-    const {Balances, Assets, OwnedAssets} = require('../dbObjects.js');
+    const {Balances, Assets, OwnedAssets} = require('../models/Index.js');
 
     if(operator === "+"){
 

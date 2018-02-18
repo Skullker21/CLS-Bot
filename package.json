@@ -20,7 +20,9 @@
     "comma-number": "^2.0.0",
     "discord.js": "^11.3.0",
     "googleapis": "^25.0.0",
+    "morgan": "^1.9.0",
     "sequelize": "^4.32.3",
+    "serve-static": "^1.13.2",
     "sqlite": "^2.9.1",
     "sqlite3": "^3.1.13",
     "underscore": "^1.8.3"

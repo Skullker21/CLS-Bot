@@ -4,7 +4,7 @@ exports.run = async (client, message, args) => {
     const _ = require("underscore");
     var commaNumber = require('comma-number');
 
-    const {Balances, Assets, OwnedAssets} = require('../dbObjects.js');
+    const {Balances, Assets, OwnedAssets} = require('../models/Index.js');
 
     var entriesRaw = [];
     var entries = [];

@@ -3,7 +3,7 @@ exports.run = async (client, message, args) => {
     //pull predefined name from config.json in root
     const account = config.accountName;
 
-    const {Balances, Assets, OwnedAssets} = require('../dbObjects.js');
+    const {Balances, Assets, OwnedAssets} = require('../models/Index.js');
 
     const permCheck = require("../checkPermissions");
   

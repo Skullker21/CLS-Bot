@@ -2,7 +2,7 @@ exports.run = async (client, message, args) => {
     const config = require("../config.json");
     const account = config.accountName;
     var permCheck = require("../checkPermissions.js");
-    const {Balances, Assets, OwnedAssets} = require('../dbObjects.js');
+    const {Balances, Assets, OwnedAssets} = require('../models/Index.js');
     var commaNumber = require('comma-number');
 
     //check the permissions of the user
