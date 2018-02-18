@@ -11,6 +11,8 @@ exports.run = async (client, message, args) => {
     var alphabetizedEntries = [];
     var categorziedEntries = [[]];
     var sortedEntires = [];
+    var slicedNames = [[]];
+    var slicedPrices = [[]];
     var sortedNames = [];
     var sortedPrices = [];
     var lastCat = null;
@@ -29,6 +31,7 @@ exports.run = async (client, message, args) => {
         //sort entries by category alphabetically
         alphabetizedEntries = _.sortBy(entries,'category');
         
+        //Sort elements by category into sub arrays
         lastCat = alphabetizedEntries[0].category;
         for (let i = 0; i < alphabetizedEntries.length; i++) {
             const element = alphabetizedEntries[i];
@@ -48,6 +51,7 @@ exports.run = async (client, message, args) => {
             }
         }
 
+        //Sort subarrays by cost
         for (let i = 0; i < categorziedEntries.length; i++) {
 
             const e = categorziedEntries[i];
@@ -66,6 +70,8 @@ exports.run = async (client, message, args) => {
                 sortedEntires[i].cost = e.cost;
             }
         }
+
+        //concatanate names and push to new array with divders, do same with cost
         lastCat = null;
         for (let i = 0; i < sortedEntires.length; i++) {
             for (let j = 0; j < sortedEntires[i].length; j++) {
@@ -89,11 +95,72 @@ exports.run = async (client, message, args) => {
             }
             
         }
+
+        //split organized entries into sub arrays of 30, only if the total number of entires is greater than 30
+        if((sortedNames.length - (currentCat + 1)) > 30){
+            let toSlice = 0;
+            for (let i = 0; i < sortedNames.length; i++) {
+                if(i > 0 && i%30 === 0){
+                    toSlice++;
+                    slicedNames.push([]);
+                    slicedPrices.push([]);
+                }
+                const e = sortedNames[i];
+                slicedNames[toSlice].push(e);
+                slicedPrices[toSlice].push(sortedPrices[i])
+            }
+        }
+
     }
     catch(e){
         console.log(e);
     }
-
+    if(slicedNames[0].length > 0){
+        for (let i = 0; i < slicedNames.length; i++) {
+            const e = slicedNames[i];
+            if(i === 0){
+                const embed = { 
+                    "description": "Assets Available For Purchase:",
+                    "color": 1340420,
+                    "author": {
+                    "name": "CLS Market",
+                    "icon_url": "https://cdn.discordapp.com/attachments/393288361122594818/413171704383406091/CLS_No_Text.png"
+                    },
+                    "fields": [
+                    {
+                        "name": "Long Name / Short Name",
+                        "value": "```" + e.join("\n") + "```",
+                        "inline": true
+                    },
+                    {
+                        "name": "Price",
+                        "value": "```" + slicedPrices[i].join("\n") + "```",
+                        "inline": true
+                    }
+                    ]
+                };
+                message.channel.send({ embed });
+            }else{
+                const embed = { 
+                    "color": 1340420,
+                    "fields": [
+                    {
+                        "name": "Long Name / Short Name",
+                        "value": "```\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n" + e.join("\n") + "```",
+                        "inline": true
+                    },
+                    {
+                        "name": "Price",
+                        "value": "```\n^^^^^^^^^^^^^^\n" + slicedPrices[i].join("\n") + "```",
+                        "inline": true
+                    }
+                    ]
+                };
+                message.channel.send({ embed });
+            }
+        }
+    }
+    else 
     if(sortedNames.length > 0){
         const embed = { 
             "description": "Assets Available For Purchase:",
@@ -126,7 +193,7 @@ exports.run = async (client, message, args) => {
             "icon_url": "https://cdn.discordapp.com/attachments/393288361122594818/413171704383406091/CLS_No_Text.png"
             }
         };
-        message.channel.send({ embed });
+        return message.channel.send({ embed });
     }
 
 }
