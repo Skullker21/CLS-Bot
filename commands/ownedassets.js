@@ -132,10 +132,12 @@ exports.run = async (client, message, args) => {
                     "color": 1340420,
                     "fields": [
                     {
+                        "name": "Long Name / Short Name",
                         "value": "```\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n" + e.join("\n") + "```",
                         "inline": true
                     },
                     {
+                        "name": "Owned",
                         "value": "```\n^^^^^^^^^^^^^^\n" + slicedOwned[i].join("\n") + "```",
                         "inline": true
                     }
