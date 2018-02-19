@@ -8,5 +8,6 @@
     "reload": "To reload a command, use the **reload** command, followed by the command to be reloaded. *Ex:* ```!reload balance```",
     "buyasset": "To buy an asset, call the **buyasset** command, then input the short name of the asset you would like to buy followed by the number of that asset you would like to purchase. *Ex:* ```!buyasset towerwooden 3```",
     "destroyasset": "To destroy an asset, call the **destroyasset** command, then input the short name of the asset you would like to destroy followed by the number of that asset you would like to destroy. *Ex:* ```!destroyasset towerwooden 3```",
-    "ownedassets": "To view the cumulative list of owned assets, call the **ownedassets** command. *Ex:* ```!ownedassets```"
+    "ownedassets": "To view the cumulative list of owned assets, call the **ownedassets** command. *Ex:* ```!ownedassets```",
+    "deleteasset": "To remove an asset from the database, call the **deleteasset** command, followed by the short name of the asset to delete *Ex:* ```!deleteasset truck```"
 }

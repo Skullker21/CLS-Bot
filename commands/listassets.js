@@ -86,9 +86,9 @@ exports.run = async (client, message, args) => {
                 else if (e.category !== lastCat){
                     var combined = e.longName + " / " + e.shortName;
 
-                    sortedNames.push(`\n${capitalize(e.category)}\n--------------`);
+                    sortedNames.push(`\n${capitalize.words(e.category)}\n--------------`);
                     sortedNames.push(combined);
-                    sortedPrices.push(`\n${capitalize(e.category)}\n--------------`);
+                    sortedPrices.push(`\n${capitalize.words(e.category)}\n--------------`);
                     sortedPrices.push(e.cost);
                     lastCat = e.category;
                 }

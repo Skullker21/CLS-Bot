@@ -35,6 +35,8 @@ exports.run = (client, message, args) => {
         case "ownedassets":
             return message.channel.send(help.ownedassets);
             break;
+        case "deleteasset":
+            return message.channel.send(help.deleteasset)
         default:
             var commands = [];
             fs.readdir(dir, (err, files) => {
