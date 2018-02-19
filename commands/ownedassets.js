@@ -121,7 +121,7 @@ exports.run = async (client, message, args) => {
                     },
                     {
                         "name": "Owned",
-                        "value": "```" + slicedOwned[i].join("\n") + "```",
+                        "value": "```\n--------------\n" + slicedOwned[i].join("\n") + "```",
                         "inline": true
                     }
                     ]
