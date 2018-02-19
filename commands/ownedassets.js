@@ -150,7 +150,7 @@ exports.run = async (client, message, args) => {
     else 
     if(sortedNames.length > 0){
         const embed = { 
-            "description": "Assets Available For Purchase:",
+            "description": "Currently Owned Assets:",
             "color": 2573226,
             "author": {
             "name": "CLS Market",
@@ -173,7 +173,7 @@ exports.run = async (client, message, args) => {
     }
     else{
         const embed = { 
-            "description": "No Currently Owned",
+            "description": "No Assets Currently Owned.",
             "color": 2573226,
             "author": {
             "name": "CLS Market",
