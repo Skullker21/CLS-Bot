@@ -27,7 +27,7 @@ exports.run = async (client, message, args) => {
               },
               {
                 "name": "Category",
-                "value": `${capitalize(asset.category)}`
+                "value": `${capitalize.words(asset.category)}`
               }
             ]
         };
