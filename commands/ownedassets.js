@@ -116,7 +116,7 @@ exports.run = async (client, message, args) => {
                     "fields": [
                     {
                         "name": "Long Name / Short Name",
-                        "value": "```" + e.join("\n") + "```",
+                        "value": "```\n-----------------------------------------\n" + e.join("\n") + "```",
                         "inline": true
                     },
                     {
@@ -133,7 +133,7 @@ exports.run = async (client, message, args) => {
                     "fields": [
                     {
                         "name": "Long Name / Short Name",
-                        "value": "```\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n" + e.join("\n") + "```",
+                        "value": "```\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n" + e.join("\n") + "```",
                         "inline": true
                     },
                     {
