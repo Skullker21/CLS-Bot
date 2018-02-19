@@ -171,12 +171,10 @@ exports.run = async (client, message, args) => {
             },
             "fields": [
             {
-                "name": "Long Name / Short Name",
                 "value": "```" + sortedNames.join("\n") + "```",
                 "inline": true
             },
             {
-                "name": "Price",
                 "value": "```" + sortedPrices.join("\n") + "```",
                 "inline": true
             }
