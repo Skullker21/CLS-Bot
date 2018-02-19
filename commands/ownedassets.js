@@ -163,7 +163,7 @@ exports.run = async (client, message, args) => {
                 "inline": true
             },
             {
-                "name": "Price",
+                "name": "Owned",
                 "value": "```" + sortedOwned.join("\n") + "```",
                 "inline": true
             }

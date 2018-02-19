@@ -4,6 +4,13 @@ exports.run = async (client, message, args) => {
     const _ = require("underscore");
     var commaNumber = require('comma-number');
 
+    const permCheck = require("../checkPermissions");
+  
+    //check the permissions of the user
+    if(!permCheck.verify(message)){
+      return message.reply("You do not have permission to execute that command");
+    }
+
     const {Balances, Assets, OwnedAssets} = require('../models/Index.js');
 
     var entriesRaw = [];
