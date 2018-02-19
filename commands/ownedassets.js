@@ -108,7 +108,7 @@ exports.run = async (client, message, args) => {
             if(i === 0){
                 const embed = { 
                     "description": "Currently Owned Assets:",
-                    "color": 1340420,
+                    "color": 2573226,
                     "author": {
                     "name": "CLS Market",
                     "icon_url": "https://cdn.discordapp.com/attachments/393288361122594818/413171704383406091/CLS_No_Text.png"
@@ -129,7 +129,7 @@ exports.run = async (client, message, args) => {
                 message.channel.send({ embed });
             }else{
                 const embed = { 
-                    "color": 1340420,
+                    "color": 2573226,
                     "fields": [
                     {
                         "name": "Long Name / Short Name",
@@ -151,7 +151,7 @@ exports.run = async (client, message, args) => {
     if(sortedNames.length > 0){
         const embed = { 
             "description": "Assets Available For Purchase:",
-            "color": 1340420,
+            "color": 2573226,
             "author": {
             "name": "CLS Market",
             "icon_url": "https://cdn.discordapp.com/attachments/393288361122594818/413171704383406091/CLS_No_Text.png"
@@ -173,8 +173,8 @@ exports.run = async (client, message, args) => {
     }
     else{
         const embed = { 
-            "description": "No Assets Available For Purchase.",
-            "color": 1340420,
+            "description": "No Currently Owned",
+            "color": 2573226,
             "author": {
             "name": "CLS Market",
             "icon_url": "https://cdn.discordapp.com/attachments/393288361122594818/413171704383406091/CLS_No_Text.png"

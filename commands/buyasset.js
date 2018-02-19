@@ -42,6 +42,8 @@ exports.run = async (client, message, args) => {
                     category: asset.category,
                     owned: numBought,
                 })
+                balance.money -= (numBought * asset.cost)
+                balance.save();
                 if(numBought === 1){
                     return message.channel.send(`**${numBought}** of asset **${asset.longName}** has been purchased for a total of **$${commaNumber(numBought*asset.cost)}**`)
                 }else{
