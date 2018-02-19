@@ -60,7 +60,7 @@ exports.run = async (client, message, args) => {
         case "category":
             if (asset) {
                 var oldCategory = asset.category;
-                asset.category = info.change;
+                asset.category = info.change.toLowerCase();
                 asset.save();
                 return message.channel.send(`Asset **${asset.longName}** category updated from **${oldCategory}** to **${asset.category}**.`);
             }

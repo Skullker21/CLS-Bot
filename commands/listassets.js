@@ -145,12 +145,10 @@ exports.run = async (client, message, args) => {
                     "color": 1340420,
                     "fields": [
                     {
-                        "name": "Long Name / Short Name",
                         "value": "```\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n" + e.join("\n") + "```",
                         "inline": true
                     },
                     {
-                        "name": "Price",
                         "value": "```\n^^^^^^^^^^^^^^\n" + slicedPrices[i].join("\n") + "```",
                         "inline": true
                     }
@@ -171,10 +169,12 @@ exports.run = async (client, message, args) => {
             },
             "fields": [
             {
+                "name": "Long Name / Short Name",
                 "value": "```" + sortedNames.join("\n") + "```",
                 "inline": true
             },
             {
+                "name": "Price",
                 "value": "```" + sortedPrices.join("\n") + "```",
                 "inline": true
             }
