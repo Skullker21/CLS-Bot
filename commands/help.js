@@ -36,7 +36,23 @@ exports.run = (client, message, args) => {
             return message.channel.send(help.ownedassets);
             break;
         case "deleteasset":
-            return message.channel.send(help.deleteasset)
+            return message.channel.send(help.deleteasset);
+            break;
+        case "buyorder":
+            return message.channel.send(help.buyorder);
+            break;
+        case "listorder":
+            return message.channel.send(help.listorder);
+            break;
+        case "discardorder":
+            return message.channel.send(help.discardorder);
+            break;
+        case "omitfromorder":
+            return message.channel.send(help.omitfromorder);
+            break;
+        case "sendorder":
+            return message.channel.send(help.sendorder);
+            break;
         default:
             var commands = [];
             fs.readdir(dir, (err, files) => {

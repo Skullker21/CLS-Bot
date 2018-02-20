@@ -12,33 +12,33 @@ exports.run = async (client, message, args) => {
     var numToRemove = parseInt(args[1]);
 
     const asset = await OwnedAssets.findOne({ where: { shortName: toRemove } });
-
-    if(asset){
-        var owned = asset.owned;
-        var name = asset.longName;
-        if((owned -= numToRemove) < 0){
-            return message.reply(`You are attempting to destroy more assets than are currently owned.`)
-        }
-        else if((owned -= numToRemove) <= 0){
-            asset.destroy({ force: true })
-            console.log("destroyed")
-            if(numToRemove === 1){
-                return message.channel.send(`**${numToRemove}** of asset **${name}** has been destroyed.`)
-            }else{
-                return message.channel.send(`**${numToRemove}** of asset **${name}** have been destroyed.`)
+    try{
+        if(asset){
+            var owned = asset.owned;
+            var name = asset.longName;
+            if((owned - numToRemove) < 0){
+                return message.reply(`You are attempting to destroy more assets than are currently owned.`)
+            }
+            else if((owned - numToRemove) <= 0){
+                asset.destroy({ force: true })
+                if(numToRemove === 1){
+                    return message.channel.send(`**${numToRemove}** of asset **${name}** has been destroyed.`)
+                }else{
+                    return message.channel.send(`**${numToRemove}** of asset **${name}** have been destroyed.`)
+                }
+            }
+            else{
+                asset.owned -= numToRemove;
+                asset.save();
+                if(numToRemove === 1){
+                    return message.channel.send(`**${numToRemove}** of asset **${name}** has been destroyed.`)
+                }else{
+                    return message.channel.send(`**${numToRemove}** of asset **${name}** have been destroyed.`)
+                }
             }
         }
-        else{
-            console.log(asset.owned)
-            asset.owned -= numToRemove;
-            console.log(asset.owned);
-            asset.save();
-            console.log("lowered")
-            if(numToRemove === 1){
-                return message.channel.send(`**${numToRemove}** of asset **${name}** has been destroyed.`)
-            }else{
-                return message.channel.send(`**${numToRemove}** of asset **${name}** have been destroyed.`)
-            }
-        }
+    }catch(e){
+        console.log(e);
+        message.reply("Something went wrong with destroying an asset.")
     }
 }

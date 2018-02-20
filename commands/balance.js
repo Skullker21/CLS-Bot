@@ -55,9 +55,6 @@ exports.run = async (client, message, args) => {
             return message.channel.send(`Account **${balance.accountHolder}** has a balance of **$${commaNumber(balance.money)}**`);
         }
         return message.reply('Account not created, use **!generatetable**');
-
-        
-
     }
 
 }

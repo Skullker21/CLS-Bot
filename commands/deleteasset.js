@@ -12,9 +12,14 @@ exports.run = async (client, message, args) => {
 
     const asset = await Assets.findOne({ where: { shortName: toRemove } });
 
-    if(asset){
-        var name = asset.longName;
-        asset.destroy({ force: true })
-        return message.channel.send(`Asset **${name}** has been removed from the database.`)
+    try{
+        if(asset){
+            var name = asset.longName;
+            asset.destroy({ force: true })
+            return message.channel.send(`Asset **${name}** has been removed from the database.`)
+        }
+    }catch(e){
+        console.log(e);
+        message.reply("Something went wrong with deleting an asset.")
     }
 }

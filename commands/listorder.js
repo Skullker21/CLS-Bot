@@ -4,6 +4,8 @@ exports.run = async (client, message, args) => {
     const _ = require("underscore");
     var commaNumber = require('comma-number');
 
+    const {Assets, BuyOrder} = require('../models/Index.js');
+
     const permCheck = require("../checkPermissions");
   
     //check the permissions of the user
@@ -11,29 +13,37 @@ exports.run = async (client, message, args) => {
       return message.reply("You do not have permission to execute that command");
     }
 
-    const {Assets} = require('../models/Index.js');
-
     var entriesRaw = [];
     var entries = [];
     var alphabetizedEntries = [];
     var categorziedEntries = [[]];
     var sortedEntires = [];
     var slicedNames = [[]];
-    var slicedPrices = [[]];
+    var slicedToOrder = [[]];
     var sortedNames = [];
-    var sortedPrices = [];
+    var sortedToOrder = [];
     var lastCat = null;
     var currentCat = 0;
+    var totalCost = 0;
 
+    
     //Find information in model with findAll and a specific column
-    entriesRaw = await Assets.findAll({
-        attributes: ['shortName', 'longName', 'category', 'cost']
+    entriesRaw = await BuyOrder.findAll({
+        attributes: ['shortName', 'longName', 'category', 'toOrder']
     });
+
     try{
         //Process long arrays into simplified data with only desired data
         entriesRaw.forEach(element => {
             entries.push(element.dataValues)
         });
+
+        //Add up total cost
+        for (let i = 0; i < entries.length; i++) {
+            const e = entries[i];
+            const asset = await Assets.findOne({ where: { shortName: e.shortName } });
+            totalCost += (asset.cost * e.toOrder)
+        }
 
         //sort entries by category alphabetically
         alphabetizedEntries = _.sortBy(entries,'category');
@@ -58,27 +68,15 @@ exports.run = async (client, message, args) => {
             }
         }
 
-        //Sort subarrays by cost
+        //Sort subarrays by toOrder
         for (let i = 0; i < categorziedEntries.length; i++) {
 
             const e = categorziedEntries[i];
-            var sorted = _.sortBy(e,'cost');
+            var sorted = _.sortBy(e,'toOrder');
             sortedEntires.push(sorted);
         }
-        
 
-        // append money sign to costs
-        for (let i = 0; i < sortedEntires.length; i++) {
-            for (let j = 0; j < sortedEntires[i].length; j++) {
-
-                const e = sortedEntires[i][j];
-                e.cost = commaNumber(e.cost);
-                e.cost = ('$' + e.cost);
-                sortedEntires[i].cost = e.cost;
-            }
-        }
-
-        //concatanate names and push to new array with divders, do same with cost
+        //concatanate names and push to new array with divders, do same with toOrder
         lastCat = null;
         for (let i = 0; i < sortedEntires.length; i++) {
             for (let j = 0; j < sortedEntires[i].length; j++) {
@@ -87,7 +85,7 @@ exports.run = async (client, message, args) => {
                     var combined = e.longName + " / " + e.shortName;
 
                     sortedNames.push(combined);
-                    sortedPrices.push(e.cost);
+                    sortedToOrder.push(e.toOrder);
                     lastCat = e.category;
                 }
                 else if (e.category !== lastCat){
@@ -95,8 +93,8 @@ exports.run = async (client, message, args) => {
 
                     sortedNames.push(`\n${capitalize.words(e.category)}\n--------------`);
                     sortedNames.push(combined);
-                    sortedPrices.push(`\n${capitalize.words(e.category)}\n--------------`);
-                    sortedPrices.push(e.cost);
+                    sortedToOrder.push(`\n${capitalize.words(e.category)}\n--------------`);
+                    sortedToOrder.push(e.toOrder);
                     lastCat = e.category;
                 }
             }
@@ -110,11 +108,11 @@ exports.run = async (client, message, args) => {
                 if(i > 0 && i%30 === 0){
                     toSlice++;
                     slicedNames.push([]);
-                    slicedPrices.push([]);
+                    slicedToOrder.push([]);
                 }
                 const e = sortedNames[i];
                 slicedNames[toSlice].push(e);
-                slicedPrices[toSlice].push(sortedPrices[i])
+                slicedToOrder[toSlice].push(sortedToOrder[i])
             }
         }
 
@@ -127,10 +125,10 @@ exports.run = async (client, message, args) => {
             const e = slicedNames[i];
             if(i === 0){
                 const embed = { 
-                    "description": "Assets Available For Purchase:",
-                    "color": 1340420,
+                    "description": "Assets in Current Order:",
+                    "color": 11302656,
                     "author": {
-                    "name": "CLS Market",
+                    "name": "CLS Order Management",
                     "icon_url": "https://cdn.discordapp.com/attachments/393288361122594818/413171704383406091/CLS_No_Text.png"
                     },
                     "fields": [
@@ -140,8 +138,8 @@ exports.run = async (client, message, args) => {
                         "inline": true
                     },
                     {
-                        "name": "Price",
-                        "value": "```\n--------------\n" + slicedPrices[i].join("\n") + "```",
+                        "name": "To Order",
+                        "value": "```\n--------------\n" + slicedToOrder[i].join("\n") + "```",
                         "inline": true
                     }
                     ]
@@ -149,7 +147,7 @@ exports.run = async (client, message, args) => {
                 message.channel.send({ embed });
             }else{
                 const embed = { 
-                    "color": 1340420,
+                    "color": 11302656,
                     "fields": [
                     {
                         "name": "Long Name / Short Name",
@@ -157,8 +155,8 @@ exports.run = async (client, message, args) => {
                         "inline": true
                     },
                     {
-                        "name": "Price",
-                        "value": "```\n^^^^^^^^^^^^^^\n" + slicedPrices[i].join("\n") + "```",
+                        "name": "To Order",
+                        "value": "```\n^^^^^^^^^^^^^^\n" + slicedToOrder[i].join("\n") + "```",
                         "inline": true
                     }
                     ]
@@ -166,25 +164,25 @@ exports.run = async (client, message, args) => {
                 message.channel.send({ embed });
             }
         }
+        message.channel.send(`Total order cost: **$${commaNumber(totalCost)}**`)
     }
-    else 
-    if(sortedNames.length > 0){
+    else if(sortedNames.length > 0){
         const embed = { 
-            "description": "Assets Available For Purchase:",
-            "color": 1340420,
+            "description": "Assets in Current Order:",
+            "color": 11302656,
             "author": {
-            "name": "CLS Market",
+            "name": "CLS Order Management",
             "icon_url": "https://cdn.discordapp.com/attachments/393288361122594818/413171704383406091/CLS_No_Text.png"
             },
             "fields": [
             {
                 "name": "Long Name / Short Name",
-                "value": "```\n-----------------------------------------\n" + sortedNames.join("\n") + "```",
+                "value": "```" + sortedNames.join("\n") + `\n\n-----------------------------------------\n| Total order cost: $${commaNumber(totalCost)} \n-----------------------------------------` + "```",
                 "inline": true
             },
             {
-                "name": "Price",
-                "value": "```" + sortedPrices.join("\n") + "```",
+                "name": "To Order",
+                "value": "```" + sortedToOrder.join("\n") + "\n\n--------------\n             |\n--------------" + "```",
                 "inline": true
             }
             ]
@@ -193,10 +191,10 @@ exports.run = async (client, message, args) => {
     }
     else{
         const embed = { 
-            "description": "No Assets Available For Purchase.",
-            "color": 1340420,
+            "description": "No Assets Currently in Order.",
+            "color": 11302656,
             "author": {
-            "name": "CLS Market",
+            "name": "CLS Order Management",
             "icon_url": "https://cdn.discordapp.com/attachments/393288361122594818/413171704383406091/CLS_No_Text.png"
             }
         };

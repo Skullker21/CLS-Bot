@@ -1,5 +1,5 @@
 {
-    "newasset": "To create a new asset, call the **newasset** command, then input the short name, long name, link to photo, category, and cost separated by semicolons. The image must be a Discord CDN link. *Ex:* ```!newasset buzzard;Buzzard Attack Helicopter;https://cdn.discordapp.com/attachments/412839875570827284/412847975518175232/20180213003553_1.jpg;helicopter;100000```",
+    "newasset": "To create a new asset, call the **newasset** command, then input the short name, long name, link to photo, category, and cost separated by **semicolons**. The image must be a Discord CDN link. *Ex:* ```!newasset buzzard;Buzzard Attack Helicopter;https://cdn.discordapp.com/attachments/412839875570827284/412847975518175232/20180213003553_1.jpg;helicopter;100000```",
     "asset": "To view information about a specific asset, call the **asset** command, then input the short name of the desired asset. *Ex:* ```!asset buzzard```",
     "editasset": "To edit an existing asset, call the **editasset** command, then input the short name of the desired asset, the attribute to be altered, and the change to execute. *Ex:* ```!editasset jeep;longname;Jeep Wrangler```",
     "balance": "To edit or view the company balance, call the **balance** command, then input a '+' or '-' followed by the amount you would like to alter the balance by. Alternatively, inputing only the root command will return the current balance. *Ex:* ```!balance + 1000\n!balance```",
@@ -9,5 +9,10 @@
     "buyasset": "To buy an asset, call the **buyasset** command, then input the short name of the asset you would like to buy followed by the number of that asset you would like to purchase. *Ex:* ```!buyasset towerwooden 3```",
     "destroyasset": "To destroy an asset, call the **destroyasset** command, then input the short name of the asset you would like to destroy followed by the number of that asset you would like to destroy. *Ex:* ```!destroyasset towerwooden 3```",
     "ownedassets": "To view the cumulative list of owned assets, call the **ownedassets** command. *Ex:* ```!ownedassets```",
-    "deleteasset": "To remove an asset from the database, call the **deleteasset** command, followed by the short name of the asset to delete *Ex:* ```!deleteasset truck```"
+    "deleteasset": "To remove an asset from the database, call the **deleteasset** command, followed by the short name of the asset to delete *Ex:* ```!deleteasset truck```",
+    "buyorder": "To create a buy order, call the **buyorder** command, followed by the short name and number of that asset to add, separated by a space. More than one asset can be added to an order at a time, do this by dividing parameters with a **semicolon**. *Ex:* ```!buyorder towerwooden 3;rhib 1;jeep 10```",
+    "listorder": "To view the currently open buy order, call the **listorder** command. *Ex:* ```!listorder```",
+    "discardorder": "To clear all entries in the current order, call the **discardorder** command. *Ex:* ```!discardorder```",
+    "omitfromorder": "To delete an entry from the current order, call the **omitfromorder** command, followed by the short name and number of that asset to discard, separated by a space. More than one asset can be discarded from an order at a time, do this by dividing parameters with a **semicolon**. *Ex:* ```!omitfromorder towerwooden 3;rhib 1;jeep 10```",
+    "sendorder": "To send a previously constructed buy order, call the **sendorder**. *Ex:* ```!sendorder```"
 }

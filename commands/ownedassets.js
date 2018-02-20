@@ -3,7 +3,7 @@ exports.run = async (client, message, args) => {
     const capitalize = require("capitalize");
     const _ = require("underscore");
 
-    const {Balances, Assets, OwnedAssets} = require('../models/Index.js');
+    const {OwnedAssets} = require('../models/Index.js');
 
     var entriesRaw = [];
     var entries = [];
@@ -110,7 +110,7 @@ exports.run = async (client, message, args) => {
                     "description": "Currently Owned Assets:",
                     "color": 2573226,
                     "author": {
-                    "name": "CLS Market",
+                    "name": "CLS Asset Management",
                     "icon_url": "https://cdn.discordapp.com/attachments/393288361122594818/413171704383406091/CLS_No_Text.png"
                     },
                     "fields": [
@@ -153,7 +153,7 @@ exports.run = async (client, message, args) => {
             "description": "Currently Owned Assets:",
             "color": 2573226,
             "author": {
-            "name": "CLS Market",
+            "name": "CLS Asset Management",
             "icon_url": "https://cdn.discordapp.com/attachments/393288361122594818/413171704383406091/CLS_No_Text.png"
             },
             "fields": [
@@ -176,7 +176,7 @@ exports.run = async (client, message, args) => {
             "description": "No Assets Currently Owned.",
             "color": 2573226,
             "author": {
-            "name": "CLS Market",
+            "name": "CLS Asset Management",
             "icon_url": "https://cdn.discordapp.com/attachments/393288361122594818/413171704383406091/CLS_No_Text.png"
             }
         };
