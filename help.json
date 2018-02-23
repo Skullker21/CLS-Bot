@@ -14,5 +14,8 @@
     "listorder": "To view the currently open buy order, call the **listorder** command. *Ex:* ```!listorder```",
     "discardorder": "To clear all entries in the current order, call the **discardorder** command. *Ex:* ```!discardorder```",
     "omitfromorder": "To delete an entry from the current order, call the **omitfromorder** command, followed by the short name and number of that asset to discard, separated by a space. More than one asset can be discarded from an order at a time, do this by dividing parameters with a **semicolon**. *Ex:* ```!omitfromorder towerwooden 3;rhib 1;jeep 10```",
-    "sendorder": "To send a previously constructed buy order, call the **sendorder**. *Ex:* ```!sendorder```"
+    "sendorder": "To send a previously constructed buy order, call the **sendorder**. *Ex:* ```!sendorder```",
+    "newfaction": "To create a new faction to track reputation with, call the **newfaction** command followed by short name and full faction name divided by a **semicolon**. *Ex:* ```!newfaction AAF;Altis Armed Forces```",
+    "deletefaction": "To remove a faction from the reputation database, call the **deletefaction** command followed by the short name of the faction to delete. *Ex:* ```!deletefaction aaf```",
+    "reputation": "To alter reputation with a faction, call the **reputation** command followed by the short name, operator(**+** or **-**), and amount to change reputation, divided by **spaces**. Additionally to view standings with all factions, call the **reputation** command with no arguments. *Ex:* ```!reputation aaf + 3\n !reputation```"
 }

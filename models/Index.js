@@ -28,7 +28,8 @@ if (!global.hasOwnProperty('db')) {
       Balances:      sequelize.import('../models/Balances'),
       Assets:        sequelize.import('../models/Assets'),
       OwnedAssets:   sequelize.import('../models/OwnedAssets'),
-      BuyOrder:      sequelize.import('../models/BuyOrder')
+      BuyOrder:      sequelize.import('../models/BuyOrder'),
+      Factions:      sequelize.import('../models/Factions')
     }
   
     /*

@@ -53,6 +53,15 @@ exports.run = (client, message, args) => {
         case "sendorder":
             return message.channel.send(help.sendorder);
             break;
+        case "newfaction":
+            return message.channel.send(help.newfaction);
+            break;
+        case "deletefaction":
+            return message.channel.send(help.deletefaction);
+            break;
+        case "reputation":
+            return message.channel.send(help.reputation);
+            break;
         default:
             var commands = [];
             fs.readdir(dir, (err, files) => {
