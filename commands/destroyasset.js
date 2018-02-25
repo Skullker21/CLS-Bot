@@ -11,6 +11,10 @@ exports.run = async (client, message, args) => {
     var toRemove = args[0];
     var numToRemove = parseInt(args[1]);
 
+    if(numToRemove < 1){
+        return message.reply("You must destroy at least one asset.")
+    }
+
     const asset = await OwnedAssets.findOne({ where: { shortName: toRemove } });
     try{
         if(asset){
