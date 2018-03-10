@@ -62,6 +62,21 @@ exports.run = (client, message, args) => {
         case "reputation":
             return message.channel.send(help.reputation);
             break;
+        case "openprivateaccount":
+            return message.channel.send(help.openprivateaccount);
+            break;
+        case "privatebalance":
+            return message.channel.send(help.privatebalance);
+            break;
+        case "payout":
+            return message.channel.send(help.payout);
+            break;
+        case "buyprivateasset":
+            return message.channel.send(help.buyprivateasset);
+            break;
+        case "privatetransfer":
+            return message.channel.send(help.privatetransfer);
+            break;
         default:
             var commands = [];
             fs.readdir(dir, (err, files) => {

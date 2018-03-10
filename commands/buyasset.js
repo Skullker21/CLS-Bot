@@ -13,7 +13,7 @@ exports.run = async (client, message, args) => {
     var toBuy = args[0];
     var numBought = parseInt(args[1]);
 
-    if(numBought <= 0 ){
+    if(numBought <= 0 || isNaN(numBought) ){
         return message.reply("The minimum purchase amount is one.");
     }
 
