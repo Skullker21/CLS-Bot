@@ -13,6 +13,7 @@ exports.run = async (client, message, args) => {
     var entries = [];
     var newArgs;
     var pay;
+    var toPay = [];
 
     //Find information in model with findAll and a specific column
     entriesRaw = await Balances.findAll({
@@ -24,27 +25,42 @@ exports.run = async (client, message, args) => {
         entries.push(element.dataValues)
     });
 
-    //Check if there are members to exclude
+    if (message.member.voiceChannel) {
+        toPay = message.member.voiceChannel.members.array();
+    } else {
+        return message.reply('You are not are in a voice channel. Payout **Failed**.');
+    }
+
+    // Check if there are members to exclude
     if(Number.isInteger(parseInt(args[0]))){
 
         pay = parseInt(args[0]);
 
         try{
-
             for (let i = 1; i < entries.length; i++) {
+                var found = false;
                 const e = entries[i];
-                
-                const balance = await Balances.findOne({ where: { accountHolder: e.accountHolder } });
 
-                if (balance) {
-
-                    balance.money += pay
-                    balance.save();
-        
+                for (let j = 0; j < toPay.length; j++) {
+                    const f = toPay[j];
+                    if(toPay[j].user.id === e.accountHolder){
+                        found = true;
+                    }
                 }
+
+                if(found){
+                    const balance = await Balances.findOne({ where: { accountHolder: e.accountHolder } });
+
+                    if (balance) {
+    
+                        balance.money += pay
+                        balance.save();
+            
+                    }
+                } 
             }
     
-            return message.channel.send(`Payout **completed**.`);
+            return message.channel.send(`Payout **completed**. **${toPay.length}** account(s) have been updated`);
         }
         catch(e){
             console.log(e);
@@ -55,7 +71,7 @@ exports.run = async (client, message, args) => {
         newArgs = newArgs.split(config.splitter);
 
         if(newArgs[1] === undefined){
-            return message.reply("Remember to divide users to exclude, and the payout amount with a **semicolon**")
+            return message.reply("Remember to divide excluded users, and the payout amount with a **semicolon**")
         }
 
         //Store new info in array
@@ -65,33 +81,37 @@ exports.run = async (client, message, args) => {
             payout: newArgs[1].trim()
         }
 
-        
-
         try{
             for (let i = 1; i < entries.length; i++) {
                 const e = entries[i];
-
+                var found = false;
                 var isExcluded = false;
 
                 for (let j = 0; j < info.excluded.length; j++) {
-
                     if(e.accountHolder === (info.excluded[j].id)){
                         isExcluded = true;
-                    }
+                    } 
+                }
 
-                    if(!isExcluded){
-                        const balance = await Balances.findOne({ where: { accountHolder: e.accountHolder } });
-    
-                        if (balance) {
-    
-                            balance.money += parseInt(info.payout);
-                            balance.save();
-                
-                        }
+                for (let j = 0; j < toPay.length; j++) {
+                    const f = toPay[j];
+                    if(toPay[j].user.id === e.accountHolder){
+                        found = true;
+                    }
+                }
+
+                if(!isExcluded && found){
+                    const balance = await Balances.findOne({ where: { accountHolder: e.accountHolder } });
+
+                    if (balance) {
+
+                        balance.money += parseInt(info.payout);
+                        balance.save();
+            
                     }
                 }
             }
-            return message.channel.send(`Payout **completed**.`);
+            return message.channel.send(`Payout **completed**. **${toPay.length}** account(s) have been updated`);
         }
         catch(e){
             

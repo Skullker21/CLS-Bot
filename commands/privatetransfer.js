@@ -15,7 +15,7 @@ exports.run = async (client, message, args) => {
             const target = await Balances.findOne({ where: { accountHolder: transferTarget.id } });
             if(target){
                 if (!transferAmount || isNaN(transferAmount)) return message.channel.send(`Sorry ${message.author}, that's an invalid amount.`);
-                if (transferAmount > currentAmount) return message.channel.send(`Sorry ${message.author}, you only have ${currentAmount}.`);
+                if (transferAmount > currentAmount) return message.channel.send(`Sorry ${message.author}, you only have **$${commaNumber(currentAmount)}**.`);
                 if (transferAmount <= 0) return message.channel.send(`Please enter an amount greater than zero, ${message.author}.`);
                 
                 initiator.money -= transferAmount
