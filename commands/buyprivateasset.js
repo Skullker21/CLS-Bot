@@ -1,14 +1,8 @@
 exports.run = async (client, message, args) => {
     const config = require("../config.json");
     const account = message.author.id;
-    var permCheck = require("../checkPermissions.js");
     const {Balances, Assets, OwnedAssets} = require('../models/Index.js');
     var commaNumber = require('comma-number');
-
-    //check the permissions of the user
-    if(!permCheck.verify(message)){
-        return message.reply("You do not have permission to execute that command");
-    }
 
     var toBuy = args[0];
     var numBought = parseInt(args[1]);
