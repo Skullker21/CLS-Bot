@@ -9,7 +9,7 @@ exports.run = async (client, message, args) => {
         const initiator = await Balances.findOne({ where: { accountHolder: account } });
         if(initiator){
             const currentAmount = initiator.money;
-            const transferAmount = args.find(arg => !/<@!?\d+>/g.test(arg));
+            const transferAmount = parseInt(args.find(arg => !/<@!?\d+>/g.test(arg)));
             const transferTarget = message.mentions.users.first();
 
             const target = await Balances.findOne({ where: { accountHolder: transferTarget.id } });
