@@ -184,7 +184,7 @@ exports.run = async (client, message, args) => {
             },
             {
                 "name": "Price",
-                "value": "```" + sortedPrices.join("\n") + "```",
+                "value": "```\n--------------\n" + sortedPrices.join("\n") + "```",
                 "inline": true
             }
             ]
