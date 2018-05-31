@@ -26,8 +26,8 @@ exports.run = (client, message, args) => {
         case "reload":
             return message.channel.send(help.reload);
             break;
-        case "buyasset":
-            return message.channel.send(help.buyasset);
+        case "buycompanyasset":
+            return message.channel.send(help.buycompanyasset);
             break;
         case "destroyasset":
             return message.channel.send(help.destroyasset);
@@ -71,8 +71,8 @@ exports.run = (client, message, args) => {
         case "payout":
             return message.channel.send(help.payout);
             break;
-        case "buyprivateasset":
-            return message.channel.send(help.buyprivateasset);
+        case "buy":
+            return message.channel.send(help.buy);
             break;
         case "privatetransfer":
             return message.channel.send(help.privatetransfer);

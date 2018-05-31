@@ -6,7 +6,7 @@
     "listassets": "To view the cumulative list of assets available for purchase, call the **listassets** command. *Ex:* ```!listassets```",
     "generatetable": "To generate the balance model, use the **generatetable** command. *Ex:* ```!generatetable```",
     "reload": "To reload a command, use the **reload** command, followed by the command to be reloaded. *Ex:* ```!reload balance```",
-    "buyasset": "To buy an asset, call the **buyasset** command, then input the short name of the asset you would like to buy followed by the number of that asset you would like to purchase. *Ex:* ```!buyasset towerwooden 3```",
+    "buycompanyasset": "To buy an asset, call the **buycompanyasset** command, then input the short name of the asset you would like to buy followed by the number of that asset you would like to purchase. *Ex:* ```!buycompanyasset towerwooden 3```",
     "destroyasset": "To destroy an asset, call the **destroyasset** command, then input the short name of the asset you would like to destroy followed by the number of that asset you would like to destroy. *Ex:* ```!destroyasset towerwooden 3```",
     "ownedassets": "To view the cumulative list of owned assets, call the **ownedassets** command. *Ex:* ```!ownedassets```",
     "deleteasset": "To remove an asset from the database, call the **deleteasset** command, followed by the short name of the asset to delete *Ex:* ```!deleteasset truck```",
@@ -21,6 +21,6 @@
     "openprivateaccount": "To open a private account, use the **openprivateaccount** command. *Ex:* ```!openprivateaccount```",
     "privatebalance": "To edit a private balance, call the **privatebalance** command, then mention the user whos account you would like to edit, and finally add a '+' or '-' followed by the amount you would like to alter the account by. Inputting the root command will return your current private balance, and inputting the root command followed by the mention of another user will return their private balance. *Ex:* ```!privatebalance @=DRK= Skullker + 1000\n!privatebalance\n!privatebalance @=DRK Skullker```",
     "payout": "To execute a company wide private payout, gather all recipients in your voice channel, and use the **payout** command, then mention users to **exclude** from the payout, and finally input the amount to pay, the mentions and amount should be separated by a **semicolon**. *Ex:* ```!payout @=DRK= Skullker ; 1000\n!payout 1000```",
-    "buyprivateasset": "To buy private asset, call the **buyprivateasset** command, then input the short name of the asset you would like to buy followed by the number of that asset you would like to purchase. *Ex:* ```!buyprivateasset m4a1 1```",
+    "buy": "To buy private asset, call the **buy** command, then input the short name of the asset you would like to buy followed by the number of that asset you would like to purchase. *Ex:* ```!buy m4a1 1```",
     "privatetransfer": "To send money to another user, call the **privatetransfer** command followed by the mention of the target user and the amount to send. *Ex:* ```!privatetransfer @=DRK= Skullker 10000```"
 }
