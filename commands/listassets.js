@@ -93,7 +93,7 @@ exports.run = async (client, message, args) => {
                 else if (e.category !== lastCat){
                     var combined = e.longName + " / " + e.shortName;
 
-                    sortedNames.push(`\n${capitalize.words(e.category)}\n-----------------------------------`);
+                    sortedNames.push(`\n${capitalize.words(e.category)}\n-------------------------------`);
                     sortedNames.push(combined);
                     sortedPrices.push(`\n${capitalize.words(e.category)}\n--------------`);
                     sortedPrices.push(e.cost);
@@ -136,7 +136,7 @@ exports.run = async (client, message, args) => {
                     "fields": [
                     {
                         "name": "Long Name / Short Name",
-                        "value": "```\n-----------------------------------\n" + e.join("\n") + "```",
+                        "value": "```\n-------------------------------\n" + e.join("\n") + "```",
                         "inline": true
                     },
                     {
@@ -153,7 +153,7 @@ exports.run = async (client, message, args) => {
                     "fields": [
                     {
                         "name": "Long Name / Short Name",
-                        "value": "```\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n" + e.join("\n") + "```",
+                        "value": "```\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n" + e.join("\n") + "```",
                         "inline": true
                     },
                     {
@@ -179,7 +179,7 @@ exports.run = async (client, message, args) => {
             "fields": [
             {
                 "name": "Long Name / Short Name",
-                "value": "```\n-----------------------------------\n" + sortedNames.join("\n") + "```",
+                "value": "```\n-------------------------------\n" + sortedNames.join("\n") + "```",
                 "inline": true
             },
             {
